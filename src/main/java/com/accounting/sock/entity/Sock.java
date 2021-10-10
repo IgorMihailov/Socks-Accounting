@@ -27,7 +27,7 @@ public class Sock implements Serializable {
     @NotNull
     @Min(value = 0)
     @Max(value = 100)
-    @Column
+    @Column(name = "cottonpart")
     private int cottonPart;
 
     @NotNull
