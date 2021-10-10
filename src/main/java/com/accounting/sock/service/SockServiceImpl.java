@@ -3,7 +3,6 @@ package com.accounting.sock.service;
 import com.accounting.sock.entity.Sock;
 import com.accounting.sock.repository.SockRepository;
 import com.sun.istack.NotNull;
-import exception.ApiRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +54,7 @@ public class SockServiceImpl implements SockService {
             case "equal":
                 return sockRepository.getSockCountEqualValue(color, cottonPart);
             default:
-                throw new ApiRequestException("Wrong operation!");
+                return -1;
         }
     }
 }

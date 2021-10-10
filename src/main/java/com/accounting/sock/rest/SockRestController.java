@@ -22,10 +22,10 @@ public class SockRestController {
             value = "/api/socks/income",
             consumes = "application/json"
     )
-    public ResponseEntity socksIncome(@RequestBody Sock sockIncome) {
+    public ResponseEntity<String> socksIncome(@RequestBody Sock sockIncome) {
 
         sockService.registerSockIncome(sockIncome);
-        return new ResponseEntity<String>(HttpStatus.OK);
+        return new ResponseEntity<>("Income was successful", HttpStatus.OK);
     }
 
     @RequestMapping(
@@ -33,24 +33,29 @@ public class SockRestController {
             value = "/api/socks/outcome",
             consumes = "application/json"
     )
-    public ResponseEntity socksOutcome(@RequestBody Sock sockOutcome) {
+    public ResponseEntity<String> socksOutcome(@RequestBody Sock sockOutcome) {
 
         sockService.registerSockOutcome(sockOutcome);
-        return new ResponseEntity<String>(HttpStatus.OK);
+        return new ResponseEntity<>("Outcome was successful", HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/api/socks")
-    public long getSocksCount(@RequestParam(value = "color") String color,
+    public ResponseEntity<String> getSocksCount(@RequestParam(value = "color") String color,
                               @RequestParam(value = "operation") String operation,
                               @RequestParam(value = "cottonPart") Integer cottonPart) {
 
-        return sockService.getTotalSockQuantity(color, operation, cottonPart);
+        Long totalQuantity = sockService.getTotalSockQuantity(color, operation, cottonPart);
+        if (totalQuantity == -1) {
+            return new ResponseEntity<>("Error: Bad operation!", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(totalQuantity.toString(), HttpStatus.OK);
 
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
-        return new ResponseEntity<>("not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
