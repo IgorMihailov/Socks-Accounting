@@ -15,6 +15,7 @@ public class SockRestController {
     @Autowired
     private SockService sockService;
 
+    // Поставка носков
     @RequestMapping(
             method = RequestMethod.POST,
             value = "/api/socks/income",
@@ -27,6 +28,7 @@ public class SockRestController {
 
     }
 
+    // Отгрузка носков
     @RequestMapping(
             method = RequestMethod.POST,
             value = "/api/socks/outcome",
@@ -42,6 +44,7 @@ public class SockRestController {
         }
     }
 
+    // Получение кол-ва носков
     @RequestMapping(method = RequestMethod.GET, value = "/api/socks")
     public ResponseEntity<String> getSocksCount(@RequestParam ("color") String color,
                                                 @RequestParam ("operation") String operation,

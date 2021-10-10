@@ -33,6 +33,8 @@ public class SockServiceImpl implements SockService {
 
         if (warehouseSock != null) {
             int newQuantity = warehouseSock.getQuantity() - sock.getQuantity();
+
+            // Если носков достаточно для отгрузки
             if (newQuantity > 0) {
                 warehouseSock.setQuantity(newQuantity);
                 sockRepository.save(warehouseSock);
