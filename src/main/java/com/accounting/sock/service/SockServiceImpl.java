@@ -6,7 +6,6 @@ import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class SockServiceImpl implements SockService {
 
@@ -15,6 +14,7 @@ public class SockServiceImpl implements SockService {
 
     @Override
     public void registerSockIncome(@NotNull Sock sock) {
+
         Sock warehouseSock = sockRepository.findByColorAndCottonPart(sock.getColor(), sock.getCottonPart());
 
         if (warehouseSock == null) {
@@ -48,11 +48,11 @@ public class SockServiceImpl implements SockService {
 
         switch (operation) {
             case "moreThan":
-                return sockRepository.getSockCountMoreThanValue(color, cottonPart);
+                return sockRepository.getSockCountMoreThanCottonValue(color, cottonPart);
             case "lessThan":
-                return sockRepository.getSockCountLessThanValue(color, cottonPart);
+                return sockRepository.getSockCountLessThanCottonValue(color, cottonPart);
             case "equal":
-                return sockRepository.getSockCountEqualValue(color, cottonPart);
+                return sockRepository.getSockCountEqualCottonValue(color, cottonPart);
             default:
                 return -1;
         }

@@ -4,6 +4,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -16,19 +20,27 @@ public class Sock implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotEmpty
+    @Column
     private String color;
 
-    @Column(nullable = false)
+    @NotNull
+    @Min(value = 0)
+    @Max(value = 100)
+    @Column
     private int cottonPart;
 
-    @Column(nullable = false)
+    @NotNull
+    @Min(value = 0)
+    @Column
     private int quantity ;
 
     public Sock(String color, Integer cottonPart, Integer quantity) {
+
         this.color = color;
         this.cottonPart = cottonPart;
         this.quantity = quantity;
+
     }
 
 }
