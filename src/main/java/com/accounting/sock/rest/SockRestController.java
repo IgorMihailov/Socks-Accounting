@@ -2,7 +2,6 @@ package com.accounting.sock.rest;
 
 import com.accounting.sock.entity.Sock;
 import com.accounting.sock.service.SockService;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,9 +56,4 @@ public class SockRestController {
 
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
-        return new ResponseEntity<>("Wrong params format: " + e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
 }
