@@ -19,7 +19,6 @@ Example of JSON:
     "cottonPart": 35,
     "quantity": 500
 }
-
 ```
 
 `/api/socks/outcome` - POST request to reduce socks
@@ -32,7 +31,6 @@ Example of JSON:
     "cottonPart": 20,
     "quantity": 100
 }
-
 ```
 
 `/api/socks` - GET request to get count of socks by params
