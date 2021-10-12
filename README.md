@@ -5,7 +5,7 @@
 ### Особенности проекта:
 :white_check_mark: Основан на Spring Boot Framework с использованием системы сборки Maven    
 :white_check_mark: Размещен в открытом доступе на Heroku: https://sock-accounting-system.herokuapp.com    
-:white_check_mark: Использует Postgresql в качестве БД    
+:white_check_mark: Использует PostgreSQL в качестве БД    
 :white_check_mark: Подключен flyway для версионирования схемы БД (в директории /src/main/resources/db/migration/ можно увидеть исходную схему БД)    
 
 ### API:
